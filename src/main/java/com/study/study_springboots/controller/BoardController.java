@@ -4,30 +4,31 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@Controller
+// @Controller
 public class BoardController {
-    @RequestMapping(value = "/board/form", method = RequestMethod.GET)
+    // @RequestMapping(value = "/board/form", method = RequestMethod.GET)
     public String form() {
         return "/WEB-INF/views/board/form.jsp";
     }
 
-    @RequestMapping(value = "/board/form", method = RequestMethod.POST)
+    // @RequestMapping(value = "/board/form", method = RequestMethod.POST)
     public String formPost() {
         // insert biz
         return "/WEB-INF/views/board/list.jsp";
     }
 
-    @RequestMapping(value = { "/board/list", "/board" }, method = RequestMethod.GET)
+    // @RequestMapping(value = { "/board/list", "/board" }, method =
+    // RequestMethod.GET)
     public String list() {
         return "/WEB-INF/views/board/list.jsp";
     }
 
-    @RequestMapping(value = "/board/view", method = RequestMethod.GET)
+    // @RequestMapping(value = "/board/view", method = RequestMethod.GET)
     public String view() {
         return "/WEB-INF/views/board/view.jsp";
     }
 
-    @RequestMapping(value = "/board/edit", method = RequestMethod.GET)
+    // @RequestMapping(value = "/board/edit", method = RequestMethod.GET)
     public String edit() {
         return "/WEB-INF/views/board/edit.jsp";
     }

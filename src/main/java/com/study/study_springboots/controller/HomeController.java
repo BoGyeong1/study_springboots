@@ -9,14 +9,14 @@ public class HomeController {
     public String homejsp() {
         int i = 0;
 
-        return "WEB-INF/views/home.jsp";
+        return "home";
     }
 
     @RequestMapping(value = "/homehtml") // http://localhost:8080/homehtml 해석하지 않음
     public String homehtml() {
         int i = 0;
 
-        return "WEB-INF/views/home.html";
+        return "home.html";
     }
 
     @RequestMapping(value = "/home") // http://localhost:8080/homehtml 해석하지 않음
@@ -28,7 +28,7 @@ public class HomeController {
     @RequestMapping(value = { "", "/", "/main" }) // http://localhost:8080/homehtml 해석하지 않음
     public String main() {
         int i = 0;
-        return "WEB-INF/views/main.jsp";
+        return "main";
 
     }
 }
