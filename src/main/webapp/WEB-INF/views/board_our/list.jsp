@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,12 +16,28 @@
   </head>
   <body>
     <div>board/list</div>
+    <div>
+    <%
+      String firstWithRequest = (String)request.getAttribute("firstString");
+      String borderList = (String)request.getAttribute("borderList");
+    %>
+      <div>With Request.getAttribute : <%= firstWithRequest %></div>
+    </div>
+    <div>
+      <div>With Get Value on Spring : ${firstString}</div>
+    </div>
+      <div>set value with Code Block</div>
+      <div><% int num = 0 ; %>set : <%= num %>, ${num}</div>
+      <div>
+      <div> With Get Value on Spring : ${boardList}</div>
+       </div>
+
     <div class="container">
       <table class="table">
         <thead>
           <tr>
             <th scope="">#</th>
-            <th class="col-9">Title</th>
+            <th scope="" class="col-9">Title</th>
             <th scope="">user name</th>
             <th scope="">date</th>
           </tr>
