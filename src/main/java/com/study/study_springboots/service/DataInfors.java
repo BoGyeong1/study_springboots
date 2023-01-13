@@ -122,6 +122,8 @@ public class DataInfors {
                 boardBean.setContent("Error");
                 boardBean.setUserName("Error");
                 boardBean.setDate("Error");
+
+                break;
             }
         }
         return boardBean;
