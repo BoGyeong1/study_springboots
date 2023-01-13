@@ -1,3 +1,5 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,20 +20,20 @@
         <thead>
             <tr>
                 <th class="col-1"scope=>Title</th>
-                <td class="col-6">Hello</td>
+                <td class="col-6">${boardBean.title}</td>
                 <th >user name</th>
-                <td>Mark</td>
+                <td>${boardBean.userName}</td>
                 <th >date</th>
-                <td>22.11.11</td>
+                <td>${boardBean.date}</td>
             </tr>
         </thead>  
         <tbody>
-       <td colspan=6>content</td>
+       <td colspan=6>${boardBean.content}</td>
         </tbody>
     </table>
     <div>
       <form action="/board/list"><button>go list</button></form>
-      <form action="/board/edit"><button>edit</button></form>
+      <form action="/board/edit" method="post"><button>edit</button></form>
     </div>
     </div>
     <script

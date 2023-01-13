@@ -15,7 +15,7 @@
   <body>
     <div>/board/form</div>
     <div class="container"> 
-    <form action="/board/form" method="post">
+    <form action="/board/save" method="post">
       <div>
         <label for="title">title</label>
         <input type="text " class="form-control" name="title" id="title" />

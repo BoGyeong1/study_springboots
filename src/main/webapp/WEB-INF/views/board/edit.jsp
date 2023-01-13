@@ -15,7 +15,7 @@
 <body>
     <div>/board/edit</div>
     <div class="container"> 
-    <form action="/board/list">
+    <form action="/board/save" method="post">
       <div>
         <label for="title">title</label>
         <input type="text " class="form-control" name="title" id="title" />
@@ -35,6 +35,7 @@
       <div>
         <button>edit</button>
       </div>
+      </form>
        </div>
       <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

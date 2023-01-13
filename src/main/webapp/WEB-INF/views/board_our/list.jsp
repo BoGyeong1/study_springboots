@@ -74,7 +74,19 @@
             <tbody>
                 <tr>
                     <th scope=>1</th>
-                    <td><a href="/board_our/view">Hello</a></td>
+                    <td><a href="/board_our/view?uid=Hello">Hello</a></td>
+                    <td>Mark</td>
+                    <td>22.11.11</td>
+                </tr>
+                                <tr>
+                    <th scope=>2</th>
+                    <td><a href="/board_our/view?uid=Otto">Otto</a></td>
+                    <td>Mark</td>
+                    <td>22.11.11</td>
+                </tr>
+                                <tr>
+                    <th scope=>3</th>
+                    <td><a href="/board_our/view?uid=Jasco">jasco</a></td>
                     <td>Mark</td>
                     <td>22.11.11</td>
                 </tr>
