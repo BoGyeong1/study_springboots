@@ -46,7 +46,6 @@ public class BoardController {
     public ModelAndView view(@RequestParam String title, ModelAndView modelAndView) {
         DataInfors dataInfors = new DataInfors();
         BoardBean boardBean = dataInfors.getViewContents(title);
-        modelAndView.addObject("title", title);
         modelAndView.addObject("boardBean", boardBean);
         modelAndView.setViewName("board/view");
         return modelAndView;
