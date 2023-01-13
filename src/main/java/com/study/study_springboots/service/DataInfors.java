@@ -108,7 +108,6 @@ public class DataInfors {
 
     public BoardBean getViewContents(String title) {
         BoardBean boardBean = new BoardBean();
-        ArrayList<BoardBean> viewContentList = getDataListWithMemberBean2();
         for (BoardBean viewContent : getDataListWithMemberBean2()) {
             if (title.equals(viewContent.getTitle())) {
                 boardBean.setTitle(viewContent.getTitle());
