@@ -1,3 +1,5 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,5 +21,15 @@
         >/borad_our BoardOurController list() /board_our/.jsp</a
       >
     </div>
+            <div>
+      <a href="jstlformats"
+        >/jstl_formats.jsp</a
+      >
+      </div>
+                  <div>
+      <a href="/notice/"
+        >NoticeController list /notice/list.jsp</a
+      >
+      </div>
   </body>
 </html>

@@ -31,4 +31,10 @@ public class HomeController {
         return "main";
 
     }
+
+    @RequestMapping(value = "jstlformats") // http://localhost:8080/homehtml 해석하지 않음
+    public String jstlFormats() {
+        return "jstl_formats";
+
+    }
 }

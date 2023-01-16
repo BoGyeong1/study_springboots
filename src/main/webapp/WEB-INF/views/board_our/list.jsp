@@ -66,7 +66,8 @@
             <thead>
                 <tr>
                     <th scope=>#</th>
-                    <th scope="" class="col-9">Title</th>
+                    <th scope="" >Title</th>
+                    <th scope="" >Title with class</th>
                     <th scope="">user name</th>
                     <th scope="">date</th>
                 </tr>
@@ -75,18 +76,21 @@
                 <tr>
                     <th scope=>1</th>
                     <td><a href="/board_our/view?uid=Hello">Hello</a></td>
+                    <td><a href="/board_our/view/Hello">Hello</a></td>
                     <td>Mark</td>
                     <td>22.11.11</td>
                 </tr>
                                 <tr>
                     <th scope=>2</th>
                     <td><a href="/board_our/view?uid=Otto">Otto</a></td>
+                    <td><a href="/board_our/view/Otto">Otto</a></td>
                     <td>Mark</td>
                     <td>22.11.11</td>
                 </tr>
                                 <tr>
                     <th scope=>3</th>
                     <td><a href="/board_our/view?uid=Jasco">jasco</a></td>
+                    <td><a href="/board_our/view/Jasco">jasco</a></td>
                     <td>Mark</td>
                     <td>22.11.11</td>
                 </tr>

@@ -128,4 +128,26 @@ public class DataInfors {
 
     }
 
+    public HashMap getDataByTitle(String title) {
+        HashMap dataList = new HashMap<>();
+        for (BoardBean viewContent : getDataListWithMemberBean2()) {
+            if (title.equals(viewContent.getTitle())) {
+                dataList.put("title", viewContent.getTitle());
+                dataList.put("content", viewContent.getContent());
+                dataList.put("userName", viewContent.getUserName());
+                dataList.put("date", viewContent.getDate());
+
+                break;
+            } else {
+                dataList.put("title", "Error");
+                dataList.put("content", "Error");
+                dataList.put("userName", "Error");
+                dataList.put("date", "Error");
+
+            }
+        }
+        return dataList;
+
+    }
+
 }
