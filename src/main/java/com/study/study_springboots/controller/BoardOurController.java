@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import javax.websocket.server.PathParam;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,10 @@ import com.study.study_springboots.service.DataInfors;
 @Controller
 @RequestMapping(value = "/board_our")
 public class BoardOurController {
+
+    @Autowired
+    DataInfors dataInfors;
+
     @RequestMapping(value = "/form", method = RequestMethod.GET) // board_our/form
     public ModelAndView form(ModelAndView modelAndView) {
 
@@ -29,7 +34,7 @@ public class BoardOurController {
     public ModelAndView list() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("firstString", "firstValue");
-        DataInfors dataInfors = new DataInfors();
+        // DataInfors dataInfors = new DataInfors();
         ArrayList<BoardBean> boardList = dataInfors.getDataListWithMemberBean();
         modelAndView.addObject("boardList", boardList);
         modelAndView.setViewName("board_our/list");
@@ -43,7 +48,7 @@ public class BoardOurController {
     // {
     @RequestMapping(value = "/view/{action_uid}", method = RequestMethod.GET) // board_our/view
     public ModelAndView view(@PathVariable String action_uid, ModelAndView modelAndView) {
-        DataInfors dataInfors = new DataInfors();
+        // DataInfors dataInfors = new DataInfors();
 
         BoardBean boardBean = dataInfors.getDataWithMemberBean();
         modelAndView.addObject("boardBean", boardBean);
