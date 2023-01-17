@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.study.study_springboots.beans.BoardBean;
 import com.study.study_springboots.service.DataInfors;
 
-@Controller
+// @Controller
 @RequestMapping(value = "/board_our")
 public class BoardOurController {
 

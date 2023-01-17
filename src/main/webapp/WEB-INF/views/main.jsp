@@ -31,5 +31,10 @@
         >NoticeController list /notice/list.jsp</a
       >
       </div>
+                        <div>
+      <a href="commonCode/list"
+        >Commoncode list  /commonCode/list.jsp</a
+      >
+      </div>
   </body>
 </html>
