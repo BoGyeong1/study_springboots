@@ -40,4 +40,17 @@ public class CommonCodeOurService {
         Object result = commonCodeOurDao.insert(sqlMapId, dataMap);
         return result;
     }
+
+    public Object deleteAndGetList(Object dataMap) {
+        Object result = this.deleteOne(dataMap);
+        result = this.getList(dataMap);
+        return result;
+    }
+
+    public Object updateAndGetList(Object dataMap) {
+        Object result = this.updateOne(dataMap);
+        result = this.getList(dataMap);
+        return result;
+
+    }
 }

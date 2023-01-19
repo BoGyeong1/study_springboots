@@ -40,8 +40,8 @@ public class CommonCodeOurController {
     @RequestMapping(value = { "/update" }, method = RequestMethod.POST)
     public ModelAndView update(@RequestParam Map<String, Object> params,
             ModelAndView modelAndView) {
-        commonCodeOurService.updateOne(params);
-
+        Object resultMap = commonCodeOurService.updateAndGetList(params);
+        modelAndView.addObject("resultMap", resultMap);
         modelAndView.setViewName("commonCode_our/list");
         return modelAndView;
     }
@@ -50,7 +50,8 @@ public class CommonCodeOurController {
     public ModelAndView delete(@RequestParam Map<String, Object> params, @PathVariable String uniqueId,
             ModelAndView modelAndView) {
         params.put("COMMON_CODE_ID", uniqueId);
-        commonCodeOurService.deleteOne(params);
+        Object resultMap = commonCodeOurService.deleteAndGetList(params);
+        modelAndView.addObject("resultMap", resultMap);
         modelAndView.setViewName("commonCode_our/list");
         return modelAndView;
     }
