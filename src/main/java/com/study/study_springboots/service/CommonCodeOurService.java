@@ -34,4 +34,10 @@ public class CommonCodeOurService {
         Object result = commonCodeOurDao.deleteOne(sqlMapId, dataMap);
         return result;
     }
+
+    public Object insertOne(Object dataMap) {
+        String sqlMapId = "CommonCodeOur.insertWithUID";
+        Object result = commonCodeOurDao.insert(sqlMapId, dataMap);
+        return result;
+    }
 }
