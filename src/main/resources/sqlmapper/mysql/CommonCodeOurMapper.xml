@@ -6,4 +6,27 @@
     <select id="selectListByUID" parameterType="Map" resultType="Map">
     SELECT * FROM CIP_COMMON_CODE;
     </select>
+
+    <!-- call CommonCodeOur.selectByUID -->
+    <select id="selectByUID" parameterType="Map" resultType="Map">
+    SELECT * 
+    FROM CIP_COMMON_CODE
+    WHERE COMMON_CODE_ID = #{COMMON_CODE_ID}
+    </select>
+
+    <!-- call CommonCodeOur.updateByUID -->
+    <update id="updateByUID" parameterType="Map">
+    UPDATE CIP_COMMON_CODE 
+    SET NAME = #{NAME}, 
+    MODIFY_DATE= sysdate()
+    WHERE COMMON_CODE_ID = #{COMMON_CODE_ID}
+    </update>
+
+        <!-- call CommonCodeOur.deleteByUID -->
+    <delete id="deleteByUID" parameterType="Map">
+    DELETE FROM CIP_COMMON_CODE
+    WHERE COMMON_CODE_ID = #{COMMON_CODE_ID}
+    </delete>
+
+
 </mapper>
