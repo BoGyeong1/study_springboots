@@ -28,6 +28,17 @@
     WHERE COMMON_CODE_ID = #{COMMON_CODE_ID}
     </delete>
 
+        <!-- call CommonCodeOur.deleteMultiByUIDs -->
+    <delete id="deleteMultiByUIDs" parameterType="Map">
+    DELETE FROM CIP_COMMON_CODE
+    WHERE COMMON_CODE_ID IN
+        <!-- 'No', 'System_Code_YN' -->
+        <foreach collection = "deleteMultis" item="item" open="(" separator ="," close=")">
+        #{item} 
+        </foreach>
+    </delete>
+
+
         <!-- call CommonCodeOur.insertWithUID -->
     <insert id="insertWithUID" parameterType="Map">
     insert into CIP_COMMON_CODE 
@@ -52,5 +63,7 @@
     </choose>
     ,NULL,#{REGISTER_SEQ},sysdate(),#{MODIFIER_SEQ},sysdate() )
     </insert>
+
+
 
 </mapper>

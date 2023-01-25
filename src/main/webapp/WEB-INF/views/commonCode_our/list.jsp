@@ -9,7 +9,8 @@
 						<button class="btn btn-info" 
 							>Form</button>
 					</form>
-
+<form action = "/commonCodeOur/deleteMulti" method="post">
+						<button class="btn btn-info">delete Multi</button>
 <table class="table table-striped table-hover table-bordered">
 	<thead>
 		<tr class="text-center">
@@ -24,7 +25,7 @@
 		<c:forEach items="${resultMap}" var="resultData" varStatus="loop">
 			<tr>
 				<td class="text-center"><input type="checkbox" class="checkbox"
-					name="COMMON_CODE_ID"  /></td>
+					name="COMMON_CODE_ID" value="${resultData.COMMON_CODE_ID}"  /></td>
 				<td>
 					<form action="/commonCodeOur/edit/${resultData.COMMON_CODE_ID}" method="get">
 						<button class="btn btn-link viewPopup" 
@@ -50,5 +51,6 @@
 		</c:forEach>
 	</tbody>
 </table>
+</form>
 </div>
 <!-- /.table-responsive -->

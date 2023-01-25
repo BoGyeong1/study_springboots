@@ -35,6 +35,12 @@ public class CommonCodeOurService {
         return result;
     }
 
+    public Object deleteMulti(Object dataMap) {
+        String sqlMapId = "CommonCodeOur.deleteMultiByUIDs";
+        Object result = commonCodeOurDao.deleteOne(sqlMapId, dataMap);
+        return result;
+    }
+
     public Object insertOne(Object dataMap) {
         String sqlMapId = "CommonCodeOur.insertWithUID";
         Object result = commonCodeOurDao.insert(sqlMapId, dataMap);
