@@ -4,7 +4,11 @@
 <mapper namespace="CommonCodeOur">
     <!-- call CommonCodeOur.selectListByUID -->
     <select id="selectListByUID" parameterType="Map" resultType="Map">
-    SELECT * FROM CIP_COMMON_CODE;
+    SELECT * 
+    FROM CIP_COMMON_CODE
+    <![CDATA[
+    WHERE ORDER_NUMBER > 2
+    ]]>
     </select>
 
     <!-- call CommonCodeOur.selectByUID -->
@@ -43,8 +47,10 @@
     <insert id="insertWithUID" parameterType="Map">
     insert into CIP_COMMON_CODE 
     (COMMON_CODE_ID,NAME,ORDER_NUMBER,ATTRIBUTION_1,ATTRIBUTION_2,DESCRIPTION,
-    SYSTEM_CODE_YN,USE_YN,PARENT_COMMON_CODE_ID,REGISTER_SEQ,REGISTRY_DATE,MODIFIER_SEQ,MODIFY_DATE)
-    VALUE( #{COMMON_CODE_ID},#{NAME},#{ORDER_NUMBER},NULL,NULL,#{DESCRIPTION}
+    SYSTEM_CODE_YN,USE_YN,PARENT_COMMON_CODE_ID,REGISTER_SEQ,REGISTRY_DATE,MODIFY_DATE,MODIFIER_SEQ)
+    VALUE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+     #{COMMON_CODE_ID},#{NAME},#{ORDER_NUMBER},NULL,NULL,#{DESCRIPTION}
     <choose>
         <when test="SYSTEM_CODE_YN != null">
         ,'Yes'
@@ -61,7 +67,11 @@
         ,'No'
         </otherwise>
     </choose>
-    ,NULL,#{REGISTER_SEQ},sysdate(),#{MODIFIER_SEQ},sysdate() )
+    ,NULL,#{REGISTER_SEQ},sysdate(),sysdate(),
+    <if test="MODIFIER_SEQ !=null">
+    #{MODIFIER_SEQ},
+    </if>
+    </trim>
     </insert>
 
 
