@@ -5,7 +5,10 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +24,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.study.study_springboots.service.CommonCodeOurService;
+import com.study.study_springboots.utils.CommonUtils;
 
 @Controller
 @RequestMapping(value = "/commonCodeOur")
@@ -28,6 +32,9 @@ public class CommonCodeOurController {
 
     @Autowired
     CommonCodeOurService commonCodeOurService;
+
+    @Autowired
+    CommonUtils commonUtils;
 
     @RequestMapping(value = { "/list", "/", "" }, method = RequestMethod.GET)
     public ModelAndView list(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
@@ -118,16 +125,36 @@ public class CommonCodeOurController {
             ModelAndView modelAndView) throws IOException {
         Iterator<String> fileNames = multipartHttpServletRequest.getFileNames();
         String relativePath = "C:\\Develops\\study_springboots\\src\\main\\resources\\static\\files\\";
+
+        Map attachFile = null;
+        List attachFiles = new ArrayList<>();
         // 파일 이름 뽑아내기
+        String physicalFileName = commonUtils.getUniqueSequence();
+        String storePath = relativePath + physicalFileName + "\\";
+        File newPath = new File(storePath);
+        newPath.mkdirs();
         while (fileNames.hasNext()) {
             String fileName = fileNames.next();
 
             MultipartFile multipartFile = multipartHttpServletRequest.getFile(fileName);
             String originalFilename = multipartFile.getOriginalFilename();
-            String storePath = relativePath + originalFilename;
+
+            String storePathFileName = storePath + originalFilename;
             // 경로 설정
-            multipartFile.transferTo(new File(storePath));
+            multipartFile.transferTo(new File(storePathFileName));
+
+            // SOURCE_UNIQUE_SEQ, ORGINALFILE_NAME, PHYSICALFILE_NAME
+            attachFile = new HashMap<>();
+            attachFile.put("ATTACHFILE_SEQ", commonUtils.getUniqueSequence());
+            attachFile.put("SOURCE_UNIQUE_SEQ", params.get("COMMON_CODE_ID"));
+            attachFile.put("ORGINALFILE_NAME", originalFilename);
+            attachFile.put("PHYSICALFILE_NAME", physicalFileName);
+            attachFile.put("REGISTER_SEQ", params.get("REGISTER_SEQ"));
+            attachFile.put("MODIFIER_SEQ", params.get("MODIFIER_SEQ"));
+            attachFiles.add(attachFile);
         }
+
+        params.put("attachFiles", attachFiles);
 
         Object resultMap = commonCodeOurService.insertWithFilesAndGetList(params);
         modelAndView.addObject("resultMap", resultMap);
