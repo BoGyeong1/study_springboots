@@ -54,11 +54,40 @@ public class CommonCodeOurController {
         return modelAndView;
     }
 
+    @RequestMapping(value = { "/editMulti/{uniqueId}" }, method = RequestMethod.GET)
+    public ModelAndView editMulti(@RequestParam Map<String, Object> params, @PathVariable String uniqueId,
+            ModelAndView modelAndView) {
+        params.put("COMMON_CODE_ID", uniqueId);
+        params.put("SOURCE_UNIQUE_SEQ", uniqueId);
+        Object resultMap = commonCodeOurService.getOneWithAttachFiles(params);
+        modelAndView.addObject("resultMap", resultMap);
+        modelAndView.setViewName("commonCode_our/editMulti");
+        return modelAndView;
+    }
+
     @RequestMapping(value = { "/update" }, method = RequestMethod.POST)
     public ModelAndView update(@RequestParam Map<String, Object> params,
             ModelAndView modelAndView) {
         Object resultMap = commonCodeOurService.updateAndGetList(params);
         modelAndView.addObject("resultMap", resultMap);
+        modelAndView.setViewName("commonCode_our/list");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = { "/updateMulti" }, method = RequestMethod.POST)
+    public ModelAndView updateMulti(MultipartHttpServletRequest multipartHttpServletRequest,
+            @RequestParam Map<String, Object> params,
+            ModelAndView modelAndView) throws IOException {
+
+        Iterator<String> fileNames = multipartHttpServletRequest.getFileNames();
+        while (fileNames.hasNext()) {
+            String value = (String) params.get(fileNames.next());
+            System.out.println(value);// DB저장이 되어있다.
+            if (value != null) {
+                // originalFilename와 있는 지 여부 확인
+            }
+        }
+
         modelAndView.setViewName("commonCode_our/list");
         return modelAndView;
     }
@@ -109,7 +138,7 @@ public class CommonCodeOurController {
         MultipartFile multipartFile = multipartHttpServletRequest.getFile("file_first");
         String fileName = multipartFile.getOriginalFilename();
 
-        String relativePath = "src\\main\\resources\\static\\files\\";
+        String relativePath = "src/main/resources/static/files";
         // file 저장
         BufferedWriter bufferedWriter = Files.newBufferedWriter(Paths.get(relativePath + fileName));
         bufferedWriter.write(new String(multipartFile.getBytes()));
@@ -124,13 +153,13 @@ public class CommonCodeOurController {
             @RequestParam Map<String, Object> params,
             ModelAndView modelAndView) throws IOException {
         Iterator<String> fileNames = multipartHttpServletRequest.getFileNames();
-        String relativePath = "C:\\Develops\\study_springboots\\src\\main\\resources\\static\\files\\";
+        String absolutePath = commonUtils.getRelativeToAbsolutePath("src/main/resources/static/files/");
 
         Map attachFile = null;
         List attachFiles = new ArrayList<>();
         // 파일 이름 뽑아내기
         String physicalFileName = commonUtils.getUniqueSequence();
-        String storePath = relativePath + physicalFileName + "\\";
+        String storePath = absolutePath + physicalFileName + File.separator;
         File newPath = new File(storePath);
         newPath.mkdirs();
         while (fileNames.hasNext()) {
@@ -139,21 +168,23 @@ public class CommonCodeOurController {
             MultipartFile multipartFile = multipartHttpServletRequest.getFile(fileName);
             String originalFilename = multipartFile.getOriginalFilename();
 
-            String storePathFileName = storePath + originalFilename;
-            // 경로 설정
-            multipartFile.transferTo(new File(storePathFileName));
+            if (originalFilename != null && multipartFile.getSize() > 0) {
 
-            // SOURCE_UNIQUE_SEQ, ORGINALFILE_NAME, PHYSICALFILE_NAME
-            attachFile = new HashMap<>();
-            attachFile.put("ATTACHFILE_SEQ", commonUtils.getUniqueSequence());
-            attachFile.put("SOURCE_UNIQUE_SEQ", params.get("COMMON_CODE_ID"));
-            attachFile.put("ORGINALFILE_NAME", originalFilename);
-            attachFile.put("PHYSICALFILE_NAME", physicalFileName);
-            attachFile.put("REGISTER_SEQ", params.get("REGISTER_SEQ"));
-            attachFile.put("MODIFIER_SEQ", params.get("MODIFIER_SEQ"));
-            attachFiles.add(attachFile);
+                String storePathFileName = storePath + originalFilename;
+                // 경로 설정
+                multipartFile.transferTo(new File(storePathFileName));
+
+                // SOURCE_UNIQUE_SEQ, ORGINALFILE_NAME, PHYSICALFILE_NAME
+                attachFile = new HashMap<>();
+                attachFile.put("ATTACHFILE_SEQ", commonUtils.getUniqueSequence());
+                attachFile.put("SOURCE_UNIQUE_SEQ", params.get("COMMON_CODE_ID"));
+                attachFile.put("ORGINALFILE_NAME", originalFilename);
+                attachFile.put("PHYSICALFILE_NAME", physicalFileName);
+                attachFile.put("REGISTER_SEQ", params.get("REGISTER_SEQ"));
+                attachFile.put("MODIFIER_SEQ", params.get("MODIFIER_SEQ"));
+                attachFiles.add(attachFile);
+            }
         }
-
         params.put("attachFiles", attachFiles);
 
         Object resultMap = commonCodeOurService.insertWithFilesAndGetList(params);

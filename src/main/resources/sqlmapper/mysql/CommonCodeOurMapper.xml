@@ -6,9 +6,9 @@
     <select id="selectListByUID" parameterType="Map" resultType="Map">
     SELECT * 
     FROM CIP_COMMON_CODE
-    <![CDATA[
+    <!-- <![CDATA[
     WHERE ORDER_NUMBER > 2
-    ]]>
+    ]]> -->
     </select>
 
     <!-- call CommonCodeOur.selectByUID -->
