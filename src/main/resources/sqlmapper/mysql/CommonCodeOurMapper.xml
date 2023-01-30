@@ -6,9 +6,13 @@
     <select id="selectListByUID" parameterType="Map" resultType="Map">
     SELECT * 
     FROM CIP_COMMON_CODE
-    <!-- <![CDATA[
-    WHERE ORDER_NUMBER > 2
-    ]]> -->
+    <![CDATA[
+    WHERE ORDER_NUMBER > 0
+    ]]>
+    <if test="pageScale != null">
+        ORDER BY COMMON_CODE_ID
+        LIMIT #{currentPage}, #{pageScale} 
+    </if> 
     </select>
 
     <!-- call CommonCodeOur.selectByUID -->
@@ -16,6 +20,12 @@
     SELECT * 
     FROM CIP_COMMON_CODE
     WHERE COMMON_CODE_ID = #{COMMON_CODE_ID}
+    </select>
+
+    <!-- call CommonCodeOur.selectTotal -->
+    <select id="selectTotal" parameterType="Map" resultType="Map">
+    SELECT COUNT(*) as cnt
+    FROM CIP_COMMON_CODE
     </select>
 
     <!-- call CommonCodeOur.updateByUID -->

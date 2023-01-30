@@ -23,6 +23,18 @@ public class CommonCodeOurService {
         return result;
     }
 
+    public Object getListWithPagination(Object dataMap) {
+        Object result = this.getTotal(dataMap);
+        result = this.getList(dataMap);
+        return result;
+    }
+
+    public Object getTotal(Object dataMap) {
+        String sqlMapId = "CommonCodeOur.selectTotal";
+        Object result = commonCodeOurDao.getOne(sqlMapId, dataMap);
+        return result;
+    }
+
     public Object getOne(Object dataMap) {
         String sqlMapId = "CommonCodeOur.selectByUID";
         Object result = commonCodeOurDao.getOne(sqlMapId, dataMap);
