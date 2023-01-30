@@ -22,7 +22,7 @@
 
 <%-- 페이징 원래는 리스트 밑에다 만들어야함 --%>
 <nav aria-label="Page navigation example">
-<span>총 갯수 : </span>
+<%-- <span>총 갯수 : ${resultMap.totalCount}</span> --%>
   <ul class="pagination">
     <li class="page-item">
       <a class="page-link" href="#" aria-label="Previous">
@@ -30,9 +30,9 @@
         <span class="sr-only">Previous</span>
       </a>
     </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="/commonCodeOur/listPagination/1">1</a></li>
+    <li class="page-item"><a class="page-link" href="/commonCodeOur/listPagination/11">2</a></li>
+    <li class="page-item"><a class="page-link" href="/commonCodeOur/listPagination/21">3</a></li>
     <li class="page-item">
       <a class="page-link" href="#" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
@@ -57,7 +57,7 @@
 					</tr>
 	</thead>
 	<tbody>
-		<c:forEach items="${resultMap}" var="resultData" varStatus="loop">
+		<c:forEach items="${resultMap.resultList}" var="resultData" varStatus="loop">
 			<tr>
 				<td class="text-center"><input type="checkbox" class="checkbox"
 					name="COMMON_CODE_ID" value="${resultData.COMMON_CODE_ID}"  /></td>
