@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <script
+      type="text/javascript"
+      src="https://www.gstatic.com/charts/loader.js"
+    ></script>
+    <script type="text/javascript">
+      // 코어차트.. ? example로 저장되어 있음
+      google.charts.load("current", { packages: ["corechart"] });
+      // 콜백
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ["Age", "Weight"],
+          //데이터 결합 백엔드에서 날라와야함
+          [8, 12],
+          [4, 5.5],
+          [11, 14],
+          [4, 5],
+          [3, 3.5],
+          [6.5, 7]
+        ]);
+
+        var options = {
+          title: "Age vs. Weight comparison",
+          //축
+          hAxis: { title: "Age", minValue: 0, maxValue: 15 },
+          vAxis: { title: "Weight", minValue: 0, maxValue: 15 },
+          legend: "none" //범례
+        };
+
+        var chart = new google.visualization.ScatterChart(
+          document.getElementById("chart_div")
+        );
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="width: 900px; height: 500px"></div>
+  </body>
+</html>
