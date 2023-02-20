@@ -9,22 +9,29 @@
       google.charts.load("current", { packages: ["corechart"] });
       // 콜백
       google.charts.setOnLoadCallback(drawChart);
-
+       
+       
+       let dataArray= ${dataArray};
       
       function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ["Age", "Weight"],
-          //데이터 결합 백엔드에서 날라와야함
-          [8, 12],
-          [4, 5.5],
-          [11, 14],
-          [4, 5],
-          [3, 3.5],
-          [6.5, 7]
-        ]);
+        // var data = google.visualization.arrayToDataTable([
+        //   ["Age", "Weight"],
+        //   //데이터 결합 백엔드에서 날라와야함
+        //   [8, 12],
+        //   [4, 5.5],
+        //   [11, 14],
+        //   [4, 5],
+        //   [3, 3.5],
+        //   [6.5, 7]
+        // ]);
+        
+        var data = google.visualization.arrayToDataTable(dataArray);
+        let target_element = document.getElementById("chart_div");
+        let height = target_element.parentElement.clientHeight;
 
         var options = {
           title: "Age vs. Weight comparison",
+          height : height,
           //축
           hAxis: { title: "Age", minValue: 0, maxValue: 15 },
           vAxis: { title: "Weight", minValue: 0, maxValue: 15 },
@@ -37,6 +44,8 @@
 
         chart.draw(data, options);
       }
+
+      window.addEventListener("resize",drawChart,false);
     </script>
     <style>
       * {
