@@ -30,7 +30,6 @@ public class Paginations {
         totalBlock = (int) Math.ceil(totalPage / blockScale);
     }
 
-    // 현재 페이지가 몇번째 페이지에 속하는지 계산
     public void setBlockRange() {
         // 현재 페이지가 몇번째 페이지 블록에 속하는지 계산
         currentBlock = (int) Math.ceil((currentPage - 1) / blockScale) + 1;
@@ -53,7 +52,7 @@ public class Paginations {
     }
 
     public void setPageRange() {
-        pageBegin = (this.currentPage - 1) * this.pageScale + 1;
+        pageBegin = (this.currentPage - 1) * this.pageScale;
         pageEnd = (this.pageBegin + pageScale) - 1;
     }
 
